@@ -39,7 +39,8 @@ public class FornecedoresDAO {
 	}
 	
 	public static void main(String[] args) {
-		Fornecedores f1 = new Fornecedores();
+		
+		/*Fornecedores f1 = new Fornecedores();
 		//f1.setDescricao("Teste 1");
 		f1.setIdFornecedores(1);
 				
@@ -50,6 +51,6 @@ public class FornecedoresDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 }
