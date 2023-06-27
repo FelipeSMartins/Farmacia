@@ -38,19 +38,37 @@ public class FornecedoresDAO {
 		
 	}
 	
+	public void editar(Fornecedores f) throws SQLException {
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE fornecedores ");
+		sql.append("SET descricao = (?) "); 
+		sql.append("WHERE idfornecedores = (?) ");
+		
+		Connection conexao = ConexaoFactory.conectar();
+		
+		PreparedStatement comando = conexao.prepareStatement(sql.toString());
+		comando.setLong(2, f.getIdFornecedores());
+		comando.setString(1, f.getDescricao());		
+		comando.executeUpdate();
+		
+		
+	}
+	
 	public static void main(String[] args) {
 		
-		/*Fornecedores f1 = new Fornecedores();
+		Fornecedores f1 = new Fornecedores();
 		//f1.setDescricao("Teste 1");
-		f1.setIdFornecedores(1);
+		f1.setIdFornecedores(2);
+		f1.setDescricao("Novamente");
 				
 		FornecedoresDAO dao = new FornecedoresDAO();
 		try {
-			dao.excluir(f1);
-			System.out.println("Fornecedores salvos com sucesso!");
+			dao.editar(f1);
+			System.out.println("Fornecedores editado com sucesso!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 	}
 }
