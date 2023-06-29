@@ -2,7 +2,7 @@ package br.com.farmacia.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -85,21 +85,114 @@ public class FornecedoresDAO {
 
 	}
 
+	public ArrayList<Fornecedores> buscarPorDescricao(Fornecedores f) throws SQLException {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT idfornecedores, descricao ");
+		sql.append("FROM fornecedores ");
+		sql.append("WHERE descricao LIKE ? ");
+
+		Connection conexao = ConexaoFactory.conectar();
+
+		PreparedStatement comando = conexao.prepareStatement(sql.toString());
+		comando.setString(1, "%" + f.getDescricao() + "%");
+		ResultSet resultado = comando.executeQuery();
+
+		ArrayList<Fornecedores> lista = new ArrayList<Fornecedores>();
+
+		while (resultado.next()) {
+
+			Fornecedores itens = new Fornecedores();
+			itens.setIdFornecedores(resultado.getLong("idFornecedores"));
+			itens.setDescricao(resultado.getString("descricao"));
+
+			lista.add(itens);
+
+		}
+
+		return lista;
+
+	}
+
+	public ArrayList<Fornecedores> listar() throws SQLException {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT * ");
+		sql.append("FROM fornecedores ");
+		sql.append("ORDER BY descricao ASC ");
+
+		Connection conexao = ConexaoFactory.conectar();
+
+		PreparedStatement comando = conexao.prepareStatement(sql.toString());
+
+		ResultSet resultado = comando.executeQuery();
+
+		ArrayList<Fornecedores> lista = new ArrayList<Fornecedores>();
+
+		while (resultado.next()) {
+
+			Fornecedores f = new Fornecedores();
+			f.setIdFornecedores(resultado.getLong("idFornecedores"));
+			f.setDescricao(resultado.getString("descricao"));
+
+			lista.add(f);
+
+		}
+
+		return lista;
+
+	}
+
 	public static void main(String[] args) {
 
-		Fornecedores f1 = new Fornecedores();
-		f1.setIdFornecedores(2);
-
+		/*Fornecedores f1 = new Fornecedores();
+		
+		f1.setDescricao("Teste5");
 		FornecedoresDAO dao = new FornecedoresDAO();
-
 		try {
 
-			dao.buscaPorCodigo(f1);
+			dao.salvar(f1);
 			System.out.println("Resultado " + f1.toString());
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+				
+		FornecedoresDAO dao = new FornecedoresDAO();
+		
+		try {
+			
+			ArrayList<Fornecedores>lista = dao.listar();			
+			
+			for (Fornecedores f : lista) {
+				System.out.println(f);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	}*/
+		
+		Fornecedores f1 = new Fornecedores();
+		f1.setDescricao("es");
+		
+		FornecedoresDAO dao = new FornecedoresDAO();
+		
+		try {
+			
+			ArrayList<Fornecedores>lista = dao.buscarPorDescricao(f1);			
+			
+			for (Fornecedores f : lista) {
+				System.out.println(f);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+		
+		
 	}
+}
 }
