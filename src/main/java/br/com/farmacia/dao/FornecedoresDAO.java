@@ -119,7 +119,7 @@ public class FornecedoresDAO {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT * ");
 		sql.append("FROM fornecedores ");
-		sql.append("ORDER BY descricao ASC ");
+		sql.append("ORDER BY idFornecedores ASC ");
 
 		Connection conexao = ConexaoFactory.conectar();
 
@@ -172,7 +172,7 @@ public class FornecedoresDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-	}*/
+	}
 		
 		Fornecedores f1 = new Fornecedores();
 		f1.setDescricao("es");
@@ -193,6 +193,20 @@ public class FornecedoresDAO {
 		
 		
 		
-	}
+	}*/
+		
+Fornecedores f1 = new Fornecedores();
+		
+		f1.setDescricao("Teste10");
+		FornecedoresDAO dao = new FornecedoresDAO();
+		try {
+
+			dao.salvar(f1);
+			System.out.println("Resultado " + f1.toString());
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 }
 }
