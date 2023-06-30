@@ -13,19 +13,61 @@
 
 	<ui:define name="conteudo">
 
-		<h:form>			
-				<p:dataTable emptyMessage="Valor não encontrado" var="item" value="#{MBFornecedores.itens}">
-					<p:column headerText="Código">
-						<h:outputText value="#{item.idFornecedores}" />
-					</p:column>
+		<h:form>
+			<p:dataTable emptyMessage="Valor não encontrado" var="item"
+				value="#{MBFornecedores.itens}" paginator="true"
+				paginatorPosition="both"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} Registros"
+				rowsPerPageTemplate="5,10,20,50">
 
-					<p:column headerText="Descrição">
-						<h:outputText value="#{item.descricao}" />
-					</p:column>
-				</p:dataTable>			
+				<f:facet name="header">Lista de Fornecedores</f:facet>
+
+				<p:column headerText="Código" sortBy="#{item.idFornecedores}"
+					filterBy="#{item.idFornecedores}">
+					<h:outputText value="#{item.idFornecedores}" />
+				</p:column>
+
+				<p:column headerText="Descrição" sortBy="#{item.descricao}"
+					filterBy="#{item.descricao}">
+					<h:outputText value="#{item.descricao}" />
+				</p:column>
+
+				<f:facet name="paginatorTopLeft">
+					<p:commandButton type="button" icon="pi pi-refresh" />
+				</f:facet>
+
+				<f:facet name="paginatorBottomRight">
+					<p:commandButton type="button" icon="pi pi-cloud-upload" />
+				</f:facet>
+
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo" actionListener="#{MBFornecedores.prepararNovo}" oncomplete="PF('dlgForNovo').show();"  />
+				</f:facet>
+
+			</p:dataTable>
 		</h:form>
-		
+
+		<p:dialog widgetVar="dlgForNovo" closable="false" draggable="false"
+			resizable="false" header="Cadastrar Fornecedor" modal="true"
+			appendTo="@(body)" >
+
+			<h:form>
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Descrição:" />
+					<p:inputText size="30" maxlength="50" value="#{MBFornecedores.fornecedores.descricao}" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Gravar" actionListener="#{MBFornecedores.novo}" oncomplete="PF('dlgForNovo').hide();" />
+					<p:commandButton value="Cancelar" onclick="PF('dlgForNovo').hide();" />
+				</h:panelGrid>
+			</h:form>
+
+		</p:dialog>
+
+
+
 	</ui:define>
-
-
 </ui:composition>

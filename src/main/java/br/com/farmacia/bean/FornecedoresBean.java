@@ -15,6 +15,16 @@ import br.com.farmacia.domain.Fornecedores;
 @ViewScoped
 public class FornecedoresBean {
 
+	private Fornecedores fornecedores;
+
+	public Fornecedores getFornecedores() {
+		return fornecedores;
+	}
+
+	public void setFornecedores(Fornecedores fornecedores) {
+		this.fornecedores = fornecedores;
+	}
+
 	private ListDataModel<Fornecedores> itens;
 
 	public ListDataModel<Fornecedores> getItens() {
@@ -25,7 +35,7 @@ public class FornecedoresBean {
 		this.itens = itens;
 	}
 
-@PostConstruct
+	@PostConstruct
 	public void prepararPesquisa() {
 
 		FornecedoresDAO fdao = new FornecedoresDAO();
@@ -35,6 +45,25 @@ public class FornecedoresBean {
 			ArrayList<Fornecedores> lista = fdao.listar();
 			itens = new ListDataModel<Fornecedores>(lista);
 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void prepararNovo() {
+
+		fornecedores = new Fornecedores();
+
+	}
+
+	public void novo() {
+
+		FornecedoresDAO fdao = new FornecedoresDAO();
+
+		try {
+			fdao.salvar(fornecedores);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
