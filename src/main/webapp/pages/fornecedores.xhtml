@@ -43,7 +43,9 @@
 
 
 				<f:facet name="footer">
-					<p:commandButton value="Novo" actionListener="#{MBFornecedores.prepararNovo}" oncomplete="PF('dlgForNovo').show();"  />
+					<p:commandButton value="Novo"
+						actionListener="#{MBFornecedores.prepararNovo}"
+						oncomplete="PF('dlgForNovo').show();" />
 				</f:facet>
 
 			</p:dataTable>
@@ -51,17 +53,21 @@
 
 		<p:dialog widgetVar="dlgForNovo" closable="false" draggable="false"
 			resizable="false" header="Cadastrar Fornecedor" modal="true"
-			appendTo="@(body)" >
+			appendTo="@(body)">
 
 			<h:form>
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Descrição:" />
-					<p:inputText size="30" maxlength="50" value="#{MBFornecedores.fornecedores.descricao}" />
+					<p:inputText size="30" maxlength="50"
+						value="#{MBFornecedores.fornecedores.descricao}" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
-					<p:commandButton value="Gravar" actionListener="#{MBFornecedores.novo}" oncomplete="PF('dlgForNovo').hide();" />
-					<p:commandButton value="Cancelar" onclick="PF('dlgForNovo').hide();" />
+					<p:commandButton value="Gravar"
+						actionListener="#{MBFornecedores.novo}"
+						oncomplete="PF('dlgForNovo').hide();" />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgForNovo').hide();" />
 				</h:panelGrid>
 			</h:form>
 
