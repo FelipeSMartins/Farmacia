@@ -13,18 +13,28 @@
 
 			<p:menubar>
 				<p:submenu label="Arquivo">
-					<p:menuitem value="Empresa" url="#" />
-					<p:menuitem value="Site" url="#" />
+					<p:menuitem value="Empresa" url="#" />					
 					<p:menuitem value="Sair" url="#" />
 				</p:submenu>	
 			
 				<p:submenu label="Cadastros">
-					<p:menuitem value="Fornecedores" url="#" />
-					<p:menuitem value="Produtos" url="#" />
+					<p:menuitem value="Fornecedores" outcome="/pages/fornecedores.xhtml" />
+					<p:menuitem value="Produtos" outcome="/pages/produtos.xhtml" />
+				</p:submenu>
+				
+					<p:submenu label="Estoques">
+					<p:menuitem value="Por Fornecedores" url="#" />
+					<p:menuitem value="Por Produtos" url="#" />
+				</p:submenu>
+				
+				<p:submenu label="Inventários">
+					<p:menuitem value="Contagens" outcome="/pages/fornecedores.xhtml" />
+					<p:menuitem value="Auditoria" outcome="/pages/produtos.xhtml" />
 				</p:submenu>			
 			
 				<p:submenu label="Configurações">
 					<p:menuitem value="Usuários" url="#" />
+					<p:menuitem value="Sistema" url="#" />
 				</p:submenu>
 						
 				<p:submenu label="Ajuda">
