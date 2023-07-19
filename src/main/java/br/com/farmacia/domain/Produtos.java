@@ -5,21 +5,11 @@ public class Produtos {
 	private Long idProdutos;
 	private String descricao;
 	private Long quantidade;
-	private Double preco;
-	
-	private Fornecedores fornecedores;
+	private Double preco;	
+	private Fornecedores fornecedores = new Fornecedores();
 	
 	public Produtos() {
 		
-	}
-
-	public Produtos(Long idProdutos, String descricao, Long quantidade, Double preco, Fornecedores fornecedores) {
-		super();
-		this.idProdutos = idProdutos;
-		this.descricao = descricao;
-		this.quantidade = quantidade;
-		this.preco = preco;
-		this.fornecedores = fornecedores;
 	}
 
 	public Long getIdProdutos() {
